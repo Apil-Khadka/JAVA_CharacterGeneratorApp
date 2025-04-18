@@ -1,0 +1,16 @@
+query GetFamily($id: ID!) {
+  family(id: $id) {
+    id
+    name
+    background
+    familyTies
+    members {
+      id
+      name
+      race
+      class
+      level
+      description
+    }
+  }
+}

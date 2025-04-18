@@ -1,0 +1,23 @@
+query GetCharacter($id: ID!) {
+  character(id: $id) {
+    id
+    name
+    race
+    class
+    level
+    attributes {
+      strength
+      dexterity
+      constitution
+      intelligence
+      wisdom
+      charisma
+    }
+    background
+    description
+    family {
+      id
+      name
+    }
+  }
+}

@@ -1,0 +1,19 @@
+mutation GenerateCharacter($input: CharacterGenerationInput!) {
+  generateCharacter(input: $input) {
+    id
+    name
+    race
+    class
+    level
+    attributes {
+      strength
+      dexterity
+      constitution
+      intelligence
+      wisdom
+      charisma
+    }
+    background
+    description
+  }
+}

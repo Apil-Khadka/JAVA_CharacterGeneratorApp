@@ -1,0 +1,9 @@
+query GetCharacters($page: Int, $size: Int) {
+  characters(page: $page, size: $size) {
+    id
+    name
+    race
+    class
+    level
+  }
+}

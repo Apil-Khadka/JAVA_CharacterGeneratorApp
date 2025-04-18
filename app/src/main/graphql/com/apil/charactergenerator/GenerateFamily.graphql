@@ -1,0 +1,16 @@
+mutation CreateNewFamily($input: FamilyGenerationInput!) {
+  generateFamily(input: $input) {
+    id
+    name
+    background
+    familyTies
+    members {
+      id
+      name
+      race
+      class
+      level
+      description
+    }
+  }
+}

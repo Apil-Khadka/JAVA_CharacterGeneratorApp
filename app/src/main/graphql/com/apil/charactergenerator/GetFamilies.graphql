@@ -1,0 +1,10 @@
+query GetFamilies($page: Int, $size: Int) {
+  families(page: $page, size: $size) {
+    id
+    name
+    members {
+      id
+      name
+    }
+  }
+}
