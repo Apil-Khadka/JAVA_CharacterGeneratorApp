@@ -1,0 +1,74 @@
+# This schema file is temporarily disabled
+# When re-enabling GraphQL, remove the "-backup" suffix from the filename
+
+type Query {
+  character(id: ID!): Character
+  characters(page: Int, size: Int): [Character!]!
+  family(id: ID!): Family
+  families(page: Int, size: Int): [Family!]!
+}
+
+type Mutation {
+  generateCharacter(input: CharacterGenerationInput!): Character!
+  generateFamily(input: FamilyGenerationInput!): Family!
+  register(registerInput: RegisterInput!): AuthResponse!
+  login(loginInput: LoginInput!): AuthResponse!
+}
+
+type Character {
+  id: ID!
+  name: String!
+  race: String!
+  class: String!
+  level: Int!
+  attributes: Attributes!
+  background: String
+  description: String
+  family: Family
+}
+
+type Family {
+  id: ID!
+  name: String!
+  members: [Character!]!
+  background: String
+  familyTies: String
+}
+
+type Attributes {
+  strength: Int!
+  dexterity: Int!
+  constitution: Int!
+  intelligence: Int!
+  wisdom: Int!
+  charisma: Int!
+}
+
+type AuthResponse {
+  token: String!
+  username: String!
+}
+
+input CharacterGenerationInput {
+  name: String
+  race: String
+  class: String
+  level: Int
+  backgroundHint: String
+}
+
+input FamilyGenerationInput {
+  familyName: String
+  memberCount: Int!
+  backgroundHint: String
+}
+
+input RegisterInput {
+  username: String!
+  password: String!
+}
+
+input LoginInput {
+  username: String!
+  password: String!
+}

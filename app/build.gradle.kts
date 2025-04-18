@@ -3,7 +3,8 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
-    id("com.apollographql.apollo3").version("3.8.2")
+    // Removed Apollo plugin temporarily
+    // id("com.apollographql.apollo3").version("3.8.2")
 }
 
 android {
@@ -79,8 +80,8 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
     
-    // Apollo for GraphQL
-    implementation("com.apollographql.apollo3:apollo-runtime:3.8.2")
+    // Apollo for GraphQL - Commented out temporarily
+    // implementation("com.apollographql.apollo3:apollo-runtime:3.8.2")
     
     // Security
     implementation("androidx.security:security-crypto:1.1.0-alpha06")
@@ -100,6 +101,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 }
 
-apollo {
-    packageName.set("com.apil.charactergenerator.data.graphql")
-}
+// Removed Apollo configuration temporarily
+// apollo {
+//     packageName.set("com.apil.charactergenerator.data.graphql")
+// }
