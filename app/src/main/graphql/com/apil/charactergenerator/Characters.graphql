@@ -1,0 +1,47 @@
+mutation GenerateCharacter($input: CharacterGenerationInput!) {
+  generateCharacter(generationInput: $input) {
+    id
+    name
+    age
+    profession
+    backgroundStory
+    generationSeed
+    createdBy
+    createdAt
+  }
+}
+
+query GetCharacterBySeed($seed: String!) {
+  characterBySeed(seed: $seed) {
+    id
+    name
+    age
+    profession
+    backgroundStory
+    generationSeed
+    createdBy
+    createdAt
+  }
+}
+
+query GetAllCharacters($page: Int!, $size: Int!) {
+  characters(page: $page, size: $size) {
+    content {
+      id
+      name
+      age
+      profession
+      backgroundStory
+      generationSeed
+      createdBy
+      createdAt
+    }
+    totalPages
+    totalElements
+    last
+    size
+    number
+    first
+    empty
+  }
+}

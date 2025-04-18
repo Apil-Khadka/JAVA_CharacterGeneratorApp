@@ -1,0 +1,60 @@
+mutation GenerateFamily($input: FamilyGenerationInput!) {
+  generateFamily(generationInput: $input) {
+    id
+    name
+    backgroundStory
+    createdBy
+    createdAt
+    members {
+      id
+      name
+      age
+      profession
+      backgroundStory
+      generationSeed
+    }
+  }
+}
+
+query GetFamilyById($id: ID!) {
+  family(id: $id) {
+    id
+    name
+    backgroundStory
+    createdBy
+    createdAt
+    members {
+      id
+      name
+      age
+      profession
+      backgroundStory
+      generationSeed
+    }
+  }
+}
+
+query GetAllFamilies($page: Int!, $size: Int!) {
+  families(page: $page, size: $size) {
+    content {
+      id
+      name
+      backgroundStory
+      createdBy
+      createdAt
+      members {
+        id
+        name
+        age
+        profession
+      }
+    }
+    totalPages
+    totalElements
+    last
+    size
+    number
+    first
+    empty
+  }
+}
