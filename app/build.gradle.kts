@@ -1,8 +1,10 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
+    // Replace kapt with KSP for JDK 24 compatibility
+    // id("kotlin-kapt")
+    id("com.google.devtools.ksp") version "1.9.0-1.0.11" // KSP version compatible with Kotlin 1.9.0
+    id("com.google.dagger.hilt.android") // Use new Hilt plugin format
     // Removed Apollo plugin temporarily
     // id("com.apollographql.apollo3").version("3.8.2")
 }
@@ -40,12 +42,20 @@ android {
     }
 
     compileOptions {
+        // Use Java 17 for backward compatibility
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        
+        // Add JVM compatibility options for newer JDK
+        isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
         jvmTarget = "17"
+        freeCompilerArgs += listOf(
+            "-Xjvm-default=all", // Make Kotlin interfaces compatible with Java
+            "-opt-in=kotlin.RequiresOptIn" // Allow using opt-in annotations
+        )
     }
 
     packaging {
@@ -70,9 +80,9 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
     implementation("androidx.navigation:navigation-compose:2.7.4")
     
-    // Hilt Dependency Injection
+    // Hilt Dependency Injection - using KSP instead of kapt
     implementation("com.google.dagger:hilt-android:2.48")
-    kapt("com.google.dagger:hilt-compiler:2.48")
+    ksp("com.google.dagger:hilt-compiler:2.48")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     
     // Retrofit for REST API
@@ -88,6 +98,9 @@ dependencies {
     
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    
+    // Java 8+ API desugaring support
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
     
     // Testing
     testImplementation("junit:junit:4.13.2")
